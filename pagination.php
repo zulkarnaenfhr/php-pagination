@@ -18,6 +18,8 @@
     $paginationRows=5;
     $endPagination= $total_page - $limitPagination;
     echo $endPagination;
+    $firstPage = 1;
+    $lastPage = $total_page;
 ?>
 
 <?php 
@@ -25,20 +27,39 @@
 ?>
 
 <div class="pagination">
-    <?php if($page > $paginationRows && $page < $endPagination) {?>
+    <?php if($page > $limitPagination && $page < $endPagination) {?>
         <?php 
             $start_pagination = ($page - $limitPagination);
             $end_pagination = ($page + $limitPagination);
         ?>
+
+        <a id="active<?php echo $firstPage?>" href='?page=<?php echo $firstPage; ?>'>
+            <?php echo $firstPage; ?>
+        </a>
+        <a id="noactive">
+            ...
+        </a>
         <?php for($x = $start_pagination; $x <= $end_pagination; $x++): ?>
             <a id="active<?php echo $x?>" href='?page=<?php echo $x; ?>'>
                 <?php echo $x; ?>
             </a>
         <?php endfor; ?> 
+        <a id="noactive">
+            ...
+        </a>
+        <a id="active<?php echo $total_page?>" href='?page=<?php echo $total_page; ?>'>
+            <?php echo $total_page; ?>
+        </a>
     <?php } elseif($page > ($endPagination-1)) { ?>
         <?php 
             $start_inEndPagination = ($total_page - 5);    
         ?>
+        <a id="active<?php echo $firstPage?>" href='?page=<?php echo $firstPage; ?>'>
+            <?php echo $firstPage; ?>
+        </a>
+        <a id="noactive">
+            ...
+        </a>
         <?php for($x = $start_inEndPagination; $x <= $total_page; $x++): ?>
             <a id="active<?php echo $x?>" href='?page=<?php echo $x; ?>'>
                 <?php echo $x; ?>
@@ -50,6 +71,12 @@
                 <?php echo $x; ?>
             </a>
         <?php endfor; ?> 
+        <a id="noactive">
+            ...
+        </a>
+        <a id="active<?php echo $total_page?>" href='?page=<?php echo $total_page; ?>'>
+            <?php echo $total_page; ?>
+        </a>
     <?php } ?>    
 </div>
 
