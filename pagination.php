@@ -17,7 +17,6 @@
     $limitPagination=2;
     $paginationRows=5;
     $endPagination= $total_page - $limitPagination;
-    echo $endPagination;
     $firstPage = 1;
     $lastPage = $total_page;
 ?>
