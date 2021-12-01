@@ -60,6 +60,9 @@
             $start_inEndPagination = ($total_page - 5);    
         ?>
         <?php if($page == $lastPage) { ?>
+            <a id="active<?php echo $page-1?>" href='?page=<?php echo $page-1; ?>'>
+                prev
+            </a>
             <a id="active<?php echo $firstPage?>" href='?page=<?php echo $firstPage; ?>'>
             <?php echo $firstPage; ?>
             </a>
@@ -75,6 +78,9 @@
                 next
             </a>
         <?php } else {  ?>
+            <a id="active<?php echo $page-1?>" href='?page=<?php echo $page-1; ?>'>
+                prev
+            </a>
             <a id="active<?php echo $firstPage?>" href='?page=<?php echo $firstPage; ?>'>
                 <?php echo $firstPage; ?>
             </a>
@@ -106,6 +112,9 @@
             <a id="active<?php echo $total_page?>" href='?page=<?php echo $total_page; ?>'>
                 <?php echo $total_page; ?>
             </a>
+            <a id="active<?php echo $page+1?>" href='?page=<?php echo $page+1; ?>'>
+                next
+            </a>
         <?php } else { ?> 
             <a id="active<?php echo $page-1?>" href='?page=<?php echo $page-1; ?>'>
                 prev
@@ -120,6 +129,9 @@
             </a>
             <a id="active<?php echo $total_page?>" href='?page=<?php echo $total_page; ?>'>
                 <?php echo $total_page; ?>
+            </a>
+            <a id="active<?php echo $page+1?>" href='?page=<?php echo $page+1; ?>'>
+                next
             </a>
         <?php } ?>               
     <?php } ?>    
