@@ -27,12 +27,14 @@
 ?>
 
 <div class="pagination">
-    <?php if($page > $limitPagination && $page < $endPagination) {?>
+    <?php if($page > $limitPagination+1 && $page < $endPagination) {?>
         <?php 
             $start_pagination = ($page - $limitPagination);
             $end_pagination = ($page + $limitPagination);
         ?>
-
+        <a id="active<?php echo $page-1?>" href='?page=<?php echo $page-1; ?>'>
+            prev
+        </a>
         <a id="active<?php echo $firstPage?>" href='?page=<?php echo $firstPage; ?>'>
             <?php echo $firstPage; ?>
         </a>
@@ -50,33 +52,76 @@
         <a id="active<?php echo $total_page?>" href='?page=<?php echo $total_page; ?>'>
             <?php echo $total_page; ?>
         </a>
+        <a id="active<?php echo $page+1?>" href='?page=<?php echo $page+1; ?>'>
+            next
+        </a>
     <?php } elseif($page > ($endPagination-1)) { ?>
         <?php 
             $start_inEndPagination = ($total_page - 5);    
         ?>
-        <a id="active<?php echo $firstPage?>" href='?page=<?php echo $firstPage; ?>'>
+        <?php if($page == $lastPage) { ?>
+            <a id="active<?php echo $firstPage?>" href='?page=<?php echo $firstPage; ?>'>
             <?php echo $firstPage; ?>
-        </a>
-        <a id="noactive">
-            ...
-        </a>
-        <?php for($x = $start_inEndPagination; $x <= $total_page; $x++): ?>
-            <a id="active<?php echo $x?>" href='?page=<?php echo $x; ?>'>
-                <?php echo $x; ?>
             </a>
-        <?php endfor; ?>
+            <a id="noactive">
+                ...
+            </a>
+            <?php for($x = $start_inEndPagination; $x <= $total_page; $x++): ?>
+                <a id="active<?php echo $x?>" href='?page=<?php echo $x; ?>'>
+                    <?php echo $x; ?>
+                </a>
+            <?php endfor; ?>
+            <a id="noactive">
+                next
+            </a>
+        <?php } else {  ?>
+            <a id="active<?php echo $firstPage?>" href='?page=<?php echo $firstPage; ?>'>
+                <?php echo $firstPage; ?>
+            </a>
+            <a id="noactive">
+                ...
+            </a>
+            <?php for($x = $start_inEndPagination; $x <= $total_page; $x++): ?>
+                <a id="active<?php echo $x?>" href='?page=<?php echo $x; ?>'>
+                    <?php echo $x; ?>
+                </a>
+            <?php endfor; ?>
+            <a id="active<?php echo $page+1?>" href='?page=<?php echo $page+1; ?>'>
+                next
+            </a>
+        <?php } ?>
     <?php } else { ?>
-        <?php for($x = 1; $x <= $paginationRows; $x++): ?>
-            <a id="active<?php echo $x?>" href='?page=<?php echo $x; ?>'>
-                <?php echo $x; ?>
+        <?php if($page == $firstPage) { ?>
+            <a id="noactive">
+                prev
             </a>
-        <?php endfor; ?> 
-        <a id="noactive">
-            ...
-        </a>
-        <a id="active<?php echo $total_page?>" href='?page=<?php echo $total_page; ?>'>
-            <?php echo $total_page; ?>
-        </a>
+            <?php for($x = 1; $x <= $paginationRows; $x++): ?>
+                <a id="active<?php echo $x?>" href='?page=<?php echo $x; ?>'>
+                    <?php echo $x; ?>
+                </a>
+            <?php endfor; ?> 
+            <a id="noactive">
+                ...
+            </a>
+            <a id="active<?php echo $total_page?>" href='?page=<?php echo $total_page; ?>'>
+                <?php echo $total_page; ?>
+            </a>
+        <?php } else { ?> 
+            <a id="active<?php echo $page-1?>" href='?page=<?php echo $page-1; ?>'>
+                prev
+            </a>
+            <?php for($x = 1; $x <= $paginationRows; $x++): ?>
+                <a id="active<?php echo $x?>" href='?page=<?php echo $x; ?>'>
+                    <?php echo $x; ?>
+                </a>
+            <?php endfor; ?> 
+            <a id="noactive">
+                ...
+            </a>
+            <a id="active<?php echo $total_page?>" href='?page=<?php echo $total_page; ?>'>
+                <?php echo $total_page; ?>
+            </a>
+        <?php } ?>               
     <?php } ?>    
 </div>
 
